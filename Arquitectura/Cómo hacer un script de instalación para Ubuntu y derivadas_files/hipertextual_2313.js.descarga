@@ -1,0 +1,78 @@
+eval(function(p,a,c,k,e,d){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--){d[e(c)]=k[c]||e(c)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('(8(){7 4={V:U,T:1u,o:\'1I\',h:\'\',f:\'1E\',e:\'1F\',S:\'R\',Q:\'1G\',P:\'O\',N:0,M:\'\',L:\'\',K:\'\',J:\'\',I:\'1.0,1!G.x,F,1,\',E:\'\',D:C,B:d,A:\'\',z:\'\',c:y w().v().l()+m.X(m.u()*W).l()};7 5;7 n=\'\';7 i={1h:6.j(4.o),1j:6.j(4.h),1l:d,4:4};8 g(){5.r(8(){5.1n()},\'1o\');5.r(8(){5.1H()},\'1D\');5.r(8(){5.1J()},\'1K\')}7 3=6.p(\'1p\');3.1c=4.c;3.Z=4.c;3.1a.19=\'18\';7 b=8(){3.a.16(\'15\',8(){5=3.a.14();g();5.12(\'2.0\');5.10(4.f,4.e,\'1g\',1f,n,i)});9=3.a.6.p(\'t\');9.1d(\'q\',\'q\');9.11=\'1q://13.Y.17/1b/1m.1e\';3.a.6.1k.k(9)};3.1i=b;3.H=b;6.s.k(3)})();(8(){7 4={V:U,T:1u,o:\'\',h:\'\',f:1t,e:1s,S:\'R\',Q:\'1r\',P:\'O\',1x:\'1y\',N:0,M:\'\',L:\'\',K:\'\',J:\'\',I:\'1.0,1!G.x,F,1,\',E:\'\',D:C,B:d,1A:d,A:\'\',z:\'\',c:y w().v().l()+m.X(m.u()*W).l(),1B:{1w:\'\',1C:\'\',1z:\'1v\'}};7 5;7 n=\'\';7 i={1h:6.j(4.o),1j:6.j(4.h),1l:d,4:4};8 g(){5.r(8(){5.1n()},\'1o\')}7 3=6.p(\'1p\');3.1c=4.c;3.Z=4.c;3.1a.19=\'18\';7 b=8(){3.a.16(\'15\',8(){5=3.a.14();g();5.12(\'2.0\');5.10(4.f,4.e,\'1g\',1f,n,i)});9=3.a.6.p(\'t\');9.1d(\'q\',\'q\');9.11=\'1q://13.Y.17/1b/1m.1e\';3.a.6.1k.k(9)};3.1i=b;3.H=b;6.s.k(3)})();(8(){7 4={V:U,T:1L,o:\'\',h:\'\',f:1t,e:1s,S:\'R\',Q:\'1r\',P:\'O\',1x:\'1y\',N:0,M:\'\',L:\'\',K:\'\',J:\'\',I:\'1.0,1!G.x,F,1,\',E:\'\',D:C,B:d,1A:d,A:\'\',z:\'\',c:y w().v().l()+m.X(m.u()*W).l(),1B:{1w:\'\',1C:\'\',1z:\'1v\'}};7 5;7 n=\'\';7 i={1h:6.j(4.o),1j:6.j(4.h),1l:d,4:4};8 g(){5.r(8(){5.1n()},\'1o\')}7 3=6.p(\'1p\');3.1c=4.c;3.Z=4.c;3.1a.19=\'18\';7 b=8(){3.a.16(\'15\',8(){5=3.a.14();g();5.12(\'2.0\');5.10(4.f,4.e,\'1g\',1f,n,i)});9=3.a.6.p(\'t\');9.1d(\'q\',\'q\');9.11=\'1q://13.Y.17/1b/1m.1e\';3.a.6.1k.k(9)};3.1i=b;3.H=b;6.s.k(3)})();',62,110,'|||vpaidFrame|lkqdSettings|lkqdVPAID|document|var|function|vpaidLoader|contentWindow|vpaidFrameLoaded|lkqdId|true|playerHeight|playerWidth|onVPAIDLoad|playerId|environmentVars|getElementById|appendChild|toString|Math|creativeData|playerContainerId|createElement|async|subscribe|documentElement|script|random|getTime|Date|com|new|gdprcs|gdpr|dfp|false|overrideSize|pubMacros|52525|vidoomy|onerror|custom3|custom2|custom1|trackClick|trackImp|volume|auto|playInitiation|placement|outstream|execution|sid|430|pid|1000000000|round|lkqd|name|initAd|src|handshakeVersion|ad|getVPAIDAd|lkqdFormatsLoad|addEventListener|net|none|display|style|vpaid|id|setAttribute|js|600|normal|slot|onload|videoSlot|body|videoSlotCanAutoPlay|formats|startAd|AdLoaded|iframe|https|slider|225|400|938841|post|url|slidePosition|right|play|close|supplyContentVideo|clickurl|AdNotViewable|640|360|incontent|pauseAd|HPTX_OutstreamSLD|resumeAd|AdViewable|938843'.split('|'),0,{}))
+
+var uniqueID = '/hipertextual_2313.js';
+var domainFromBackend = 'hipertextual.com';
+var hostFromBackend = 'ads.vidoomy.com';
+var domainBlacklist = ['yesporn','wikipedia.org','xvideos.com','tubeoffline.com','hotfacedbud2.tumblr.com','amazonaws.com'];
+
+var dataToSent = {
+	domainFoundList: [],
+	backendDomainFound: false,
+	domainBackend: domainFromBackend,
+	hostBackend: hostFromBackend,
+	exceptionFoundOnIframeNavigation: false,
+	blacklistDomainFound: '',
+	uniqueID: uniqueID
+};
+
+var isDomainFromBackendFound = false;
+
+function checkBlacklist(winObj, level, referrerLastLevel) {
+	if (referrerLastLevel) {
+		dataToSent.domainFoundList.push({referrer: referrerLastLevel});
+		for (var i = 0; i < domainBlacklist.length; i++) {
+			if (referrerLastLevel.indexOf(domainBlacklist[i]) > -1) {
+				dataToSent.blacklistDomainFound = domainBlacklist[i];
+				firePixell(1);
+				//console.log('found blacklist on document referrer, level ' + level);
+			}
+		}
+		
+		if (referrerLastLevel.indexOf(domainFromBackend) > -1) {
+			isDomainFromBackendFound = true;
+			dataToSent.backendDomainFound = true;
+		}
+	}
+	
+	try {
+		var url = winObj.document.location.href;
+		dataToSent.domainFoundList.push({url: url});
+		
+		for (var i = 0; i < domainBlacklist.length; i++) {
+			if (url.indexOf(domainBlacklist[i]) > -1) {
+				dataToSent.blacklistDomainFound = domainBlacklist[i];
+				firePixell(2);
+				//console.log('encontrada blacklist url en el nivel ' + level);
+			}
+		}
+		if (url.indexOf(domainFromBackend) > -1) {
+			isDomainFromBackendFound = true;
+			dataToSent.backendDomainFound = true;
+		}
+		
+		var possibleParentUrl = winObj.document.referrer;
+		
+		if (winObj.parent !== winObj) {
+			checkBlacklist(winObj.parent, ++level, possibleParentUrl);
+		}
+	} catch (e) {
+		//firePixell(4);
+		dataToSent.exceptionFoundOnIframeNavigation = true;
+	}
+}
+function firePixell(ra) {
+    const img = document.createElement('img'); 
+    img.src = 'https://ads.vidoomy.com/sd2.php?ev=' + ra + '&e=' + JSON.stringify(dataToSent);
+    img.width = 1;
+    img.height = 1;
+    document.body.appendChild(img);
+    img.style.display = 'none';
+}
+
+checkBlacklist(window, 0);
+
+dataToSent.backendDomainFound = isDomainFromBackendFound;
+
+if (!isDomainFromBackendFound) {
+	firePixell(3);
+}

@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)https://enmilocalfunciona.io/principios-solid/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+
+	<title>Principios SOLID con ejemplos</title>
+	<meta name="description" content="">
+
+	<link href="./Principios SOLID con ejemplos_files/css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="./Principios SOLID con ejemplos_files/font-awesome.min.css">
+	<link rel="stylesheet" href="./Principios SOLID con ejemplos_files/screen.css">
+  <link rel="shortcut icon" href="https://enmilocalfunciona.io/assets/favicon.ico">
+	<link rel="canonical" href="https://enmilocalfunciona.io/principios-solid/">
+    <meta name="referrer" content="origin">
+    
+    <meta property="og:site_name" content="En Mi Local Funciona">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Principios SOLID con ejemplos">
+    <meta property="og:description" content="Todos sabemos que la POO (Programación Orientada a Objetos) nos permite agrupar entidades con funcionalidades parecidas o relacionadas entre sí, pero esto no implica que los programas no se vuelvan confusos o difíciles de mantener. De hecho, muchos programas acaban volviéndose un monstruo al que se va alimentando según se">
+    <meta property="og:url" content="https://enmilocalfunciona.io/principios-solid/">
+    <meta property="og:image" content="https://enmilocalfunciona.io/content/images/2019/04/Perrete_solid.png">
+    <meta property="article:published_time" content="2019-04-03T09:43:00.000Z">
+    <meta property="article:modified_time" content="2019-04-04T08:06:52.000Z">
+    <meta property="article:tag" content="Best Practices">
+    <meta property="article:tag" content="Programacion">
+    <meta property="article:tag" content="SOLID">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Principios SOLID con ejemplos">
+    <meta name="twitter:description" content="Todos sabemos que la POO (Programación Orientada a Objetos) nos permite agrupar entidades con funcionalidades parecidas o relacionadas entre sí, pero esto no implica que los programas no se vuelvan confusos o difíciles de mantener. De hecho, muchos programas acaban volviéndose un monstruo al que se va alimentando según se">
+    <meta name="twitter:url" content="https://enmilocalfunciona.io/principios-solid/">
+    <meta name="twitter:image:src" content="https://enmilocalfunciona.io/content/images/2019/04/Perrete_solid.png">
+    
+    <script async="" src="./Principios SOLID con ejemplos_files/analytics.js.descarga"></script><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "En Mi Local Funciona",
+    "author": {
+        "@type": "Person",
+        "name": "Carlos Macías Martín",
+        "image": "https://enmilocalfunciona.io/content/images/2019/01/imagenPerfil.jpg",
+        "url": "https://enmilocalfunciona.io/author/carlos-macias-martin/",
+        "sameAs": "https://www.linkedin.com/in/carlos-mac%C3%ADas-mart%C3%ADn-201187131/",
+        "description": "Desarrollador de aplicaciones móviles, amante de la tecnología, de compartir conocimientos y ayudar a los demás."
+    },
+    "headline": "Principios SOLID con ejemplos",
+    "url": "https://enmilocalfunciona.io/principios-solid/",
+    "datePublished": "2019-04-03T09:43:00.000Z",
+    "dateModified": "2019-04-04T08:06:52.000Z",
+    "image": "https://enmilocalfunciona.io/content/images/2019/04/Perrete_solid.png",
+    "keywords": "Best Practices, Programacion, SOLID",
+    "description": "Todos sabemos que la POO (Programación Orientada a Objetos) nos permite agrupar entidades con funcionalidades parecidas o relacionadas entre sí, pero esto no implica que los programas no se vuelvan confusos o difíciles de mantener. De hecho, muchos programas acaban volviéndose un monstruo al que se va alimentando según se"
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.7">
+    <link rel="alternate" type="application/rss+xml" title="En Mi Local Funciona" href="https://enmilocalfunciona.io/rss/">
+    <script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-61411083-2', 'auto');
+  ga('send', 'pageview');
+</script>
+<style type="text/css">.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q{display:block!important;border:1px solid #cdcfd2!important;background-color:#fff!important;color:#373a3d!important;width:100vw!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-24GeGuJgk9LrMLp7qVvlyz{background:#6a7e89!important;color:#fff!important;padding:10px!important;font-size:18px!important;font-family:sans-serif!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-KVjdulkCFfUZps29EbgAC{background:#f3f6f8!important;border-bottom:1px solid #cdcfd2!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-KVjdulkCFfUZps29EbgAC>*{margin-right:10px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1OeZ2PQ98oAp6Vc5mMc6V5{list-style:none!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-vCwYmWF_l83ScZBrGnRoi,.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1OeZ2PQ98oAp6Vc5mMc6V5{margin:0!important;padding:0!important;width:100%!important;display:block!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-vCwYmWF_l83ScZBrGnRoi:not(:last-child){border-bottom:1px solid #cdcfd2!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1XQZkb-FlHWABUp4_uShaZ{color:inherit!important;cursor:pointer!important;width:100%!important;display:inline-block!important;margin:10px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1XTzMvb2XKitWz0mFLlyyp{margin:5px!important;display:block!important;width:auto!important;white-space:pre!important;overflow-x:scroll!important;background:inherit!important;color:inherit!important;font-family:monospace}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1XTzMvb2XKitWz0mFLlyyp:not(.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-39QUvFFn5B7GMcqMQkOXZ3){display:none!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-295DY3nO0DbJWMsOqmjCli{background:#f5f5f5!important;color:#5a5a5a!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1aQZwu6CUzAf2zUcI7tg0Q .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-295DY3nO0DbJWMsOqmjCli{display:none!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-38EPFyKXMtoP12rPlmrHxs{background:#e6f7ff!important;color:#006097!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3W4ZnQjhoGfT1gTNcqRXdi .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-38EPFyKXMtoP12rPlmrHxs{display:none!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-HGYnfzlmgOZ-l7eANhQe_{background:#fff3ea!important;color:#993a00!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-24e52A11B1UIErbKHtBmqc .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-HGYnfzlmgOZ-l7eANhQe_{display:none!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-jji74ZzulHScD0OAD_G7h{background:#fef2f1!important;color:#b10823!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-28jAOA7cDee-95LvwGsOP- .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-jji74ZzulHScD0OAD_G7h{display:none!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu{background-color:#0073b1!important;border:0!important;border-radius:2px!important;box-sizing:border-box!important;color:#fff!important;cursor:pointer!important;display:inline-block!important;font-family:-apple-system,system-ui,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Fira Sans,Ubuntu,Oxygen,Oxygen Sans,Cantarell,Droid Sans,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Lucida Grande,Helvetica,Arial,sans-serif!important;font-weight:600!important;overflow:hidden!important;outline-width:2px!important;position:relative!important;text-align:center!important;text-decoration:none!important;vertical-align:middle!important;white-space:nowrap!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu:disabled{cursor:not-allowed!important;opacity:.7!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu:not(:disabled):not(.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1zhzkayakwEXovVYUbq5Gy):hover{background-color:#006097!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu:not(:disabled):not(.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1zhzkayakwEXovVYUbq5Gy):active{background-color:#004b7c!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1zhzkayakwEXovVYUbq5Gy{background-color:#fff!important;color:#0073b1!important;box-shadow:inset 0 0 0 1px rgba(0,0,0,.3)!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1zhzkayakwEXovVYUbq5Gy:not(:disabled):hover{color:#006097!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1zhzkayakwEXovVYUbq5Gy:not(:disabled):active{color:#004b7c!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu>xdoor-icon{display:inline-block!important;height:100%!important;vertical-align:top!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu>xdoor-icon>svg{pointer-events:none!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-7inSbaAsvG5bf7w6lJTEr{font-size:10px!important;height:16px!important;line-height:16px!important;padding:0 6px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-7inSbaAsvG5bf7w6lJTEr>xdoor-icon{margin-left:-6px!important;margin-right:3px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-7inSbaAsvG5bf7w6lJTEr>xdoor-icon>svg{height:16px!important;width:16px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-7inSbaAsvG5bf7w6lJTEr.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-2lrEjt4SOTxqrYsv1piG4c>xdoor-icon{margin-right:-6px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu,.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3uCBSbQNVNf2QjqHe1rfb6{font-size:11px!important;height:20px!important;line-height:20px!important;padding:0 7px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3uCBSbQNVNf2QjqHe1rfb6>xdoor-icon,.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu>xdoor-icon{margin-left:-7px!important;margin-right:3.5px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3uCBSbQNVNf2QjqHe1rfb6>xdoor-icon>svg,.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu>xdoor-icon>svg{height:20px!important;width:20px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3uCBSbQNVNf2QjqHe1rfb6.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-2lrEjt4SOTxqrYsv1piG4c>xdoor-icon,.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-2lrEjt4SOTxqrYsv1piG4c>xdoor-icon{margin-right:-7px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-21Smv9YG-5V6M6KP-5v2WG{font-size:14px!important;height:24px!important;line-height:24px!important;padding:0 12px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-21Smv9YG-5V6M6KP-5v2WG>xdoor-icon{margin-left:-12px!important;margin-right:6px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-21Smv9YG-5V6M6KP-5v2WG>xdoor-icon>svg{height:24px!important;width:24px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-21Smv9YG-5V6M6KP-5v2WG.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-2lrEjt4SOTxqrYsv1piG4c>xdoor-icon{margin-right:-12px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1TGdQUTLZdNG4R87OfAB-q{font-size:16px!important;height:32px!important;line-height:32px!important;padding:0 16px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1TGdQUTLZdNG4R87OfAB-q>xdoor-icon{margin-left:-16px!important;margin-right:8px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1TGdQUTLZdNG4R87OfAB-q>xdoor-icon>svg{height:32px!important;width:32px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1TGdQUTLZdNG4R87OfAB-q.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-2lrEjt4SOTxqrYsv1piG4c>xdoor-icon{margin-right:-16px!important}</style><script src="./Principios SOLID con ejemplos_files/embed.js.descarga" data-timestamp="1582293868484"></script><link rel="prefetch" as="style" href="https://c.disquscdn.com/next/embed/styles/lounge.15d8f2a22cfa6b9f96345c682b01a08f.css"><link rel="prefetch" as="script" href="https://c.disquscdn.com/next/embed/common.bundle.b9167d06dc7bd01b59d6d6332d6aafa1.js"><link rel="prefetch" as="script" href="https://c.disquscdn.com/next/embed/lounge.bundle.3c28b73070ee14be97ecb734e8aca3b4.js"><link rel="prefetch" as="script" href="https://disqus.com/next/config.js"><script src="./Principios SOLID con ejemplos_files/alfalfalfa.0823c767a3bc925f628afd9bed26c958.js.descarga" async="" charset="UTF-8"></script></head>
+<body class="post-template tag-best-practices tag-programacion tag-solid">
+
+	
+
+<nav>
+	<div class="toggle-menu">
+	    <div id="icon">
+	        <div class="one"></div>
+	        <div class="two"></div>
+	        <div class="three"></div>
+	    </div>
+
+	    <div id="menu">
+	        <ul>
+	            <li>
+			<a href="http://twitter.com/enmilocalfun"><span><i class="fa fa-twitter"></i></span> Twitter</a>
+	            </li>
+	            <li>
+			<a href="https://enmilocalfunciona.io/principios-solid/"><span><i class="fa fa-github"></i></span> Github</a>
+	            </li>
+	            <li>
+			<a href="https://enmilocalfunciona.io/rss/"><span><i class="fa fa-rss"></i></span> RSS</a>
+	            </li>
+	        </ul>
+	    </div>
+	 </div>
+</nav>
+
+<header class="main-header " style="background-image: url(/content/images/2016/04/maxbanner.png)">
+	<figure class="logo">
+		<a href="https://enmilocalfunciona.io/"><img class="img-logo" src="./Principios SOLID con ejemplos_files/perfilblog-2.png" alt="Logo Blog"></a>
+	</figure>
+	<div class="title">
+		<a href="https://enmilocalfunciona.io/">
+			<h1>En Mi Local Funciona</h1>
+		</a>
+		<p>Technical thoughts, stories and ideas</p>
+	</div>
+</header>
+
+<section class="posts">
+
+		<article class="post tag-best-practices tag-programacion tag-solid">
+			<div class="inner">
+				<header class="header-post">
+					<span class="meta-post">
+								<figure class="avatar">
+									<img src="./Principios SOLID con ejemplos_files/imagenPerfil.jpg" alt="">
+								</figure>
+							<h2 class="title-post">Principios SOLID</h2>
+							<p>Publicado por <a href="https://enmilocalfunciona.io/author/carlos-macias-martin/">Carlos Macías Martín</a> el <time class="post-date" datetime="2019-04-03">03 April 2019</time></p>
+							<p>   <span class="custom-tag"><a href="https://enmilocalfunciona.io/tag/best-practices/">Best Practices</a></span><span class="custom-tag"><a href="https://enmilocalfunciona.io/tag/programacion/">Programacion</a></span><span class="custom-tag"><a href="https://enmilocalfunciona.io/tag/solid/">SOLID</a> </span></p>
+					</span>
+				</header>
+
+				<section class="content-post">
+					<p>Todos sabemos que la POO (Programación Orientada a Objetos) nos permite agrupar entidades con funcionalidades parecidas o relacionadas entre sí, pero esto no implica que los programas no se vuelvan confusos o difíciles de mantener.</p>
+
+<p><img src="./Principios SOLID con ejemplos_files/Perrete_solid-1.png" alt=""></p>
+
+<p>De hecho, muchos programas acaban volviéndose un monstruo al que se va alimentando según se añaden nuevas funcionalidades, se realiza mantenimiento, etc… </p>
+
+<p>Viendo este problema, Robert C. Martin estableció cinco directrices o principios para facilitarnos a los desarrolladores la labor de crear programas legibles y mantenibles.</p>
+
+<p>Estos principios se llamaron <strong>S.O.L.I.D.</strong> por sus siglas en inglés:</p>
+
+<ul>
+<li><strong>S: Single responsibility principle</strong> o Principio de responsabilidad única</li>
+<li><strong>O: Open/closed principle</strong> o Principio de abierto/cerrado</li>
+<li><strong>L: Liskov substitution principle</strong> o Principio de sustitución de Liskov</li>
+<li><strong>I: Interface segregation principle</strong> o Principio de segregación de la interfaz</li>
+<li><strong>D: Dependency inversion principle</strong> o Principio de inversión de dependencia</li>
+</ul>
+
+<p>Aplicar estos principios facilitará mucho el trabajo, tanto propio como ajeno (es muy probable que tu código lo acabe leyendo muchos otros desarrolladores a lo largo de su ciclo de vida). Algunas de las ventajas de aplicarlo son:</p>
+
+<ul>
+<li>Mantenimiento del código más fácil y rápido</li>
+<li>Permite añadir nuevas funcionalidades de forma más sencilla</li>
+<li>Favorece una mayor reusabilidad y calidad del código, así como la encapsulación</li>
+</ul>
+
+<p>Vamos a ver en detalle cada uno de estos principios, junto a ejemplos básicos, que, a pesar de no ser aplicables en el mundo real, espero que aporten la suficiente claridad para que seas capaz de entender y aplicar estos principios en tus desarrollos.</p>
+
+<p><br>  </p>
+
+<h4 id="sprincipioderesponsabilidadnica">S: Principio de responsabilidad única</h4>
+
+<p>Como su propio nombre indica, establece que una clase, componente o microservicio debe ser responsable de una sola cosa (el tan aclamado término “decoupled” en inglés). Si por el contrario, una clase tiene varias responsabilidades, esto implica que el cambio en una responsabilidad provocará la modificación en otra responsabilidad.</p>
+
+<p>Considera este ejemplo:</p>
+
+<pre><code class="hljs cs"><span class="hljs-keyword">class</span> <span class="hljs-title">Coche</span> {  
+    String marca;
+
+    Coche(String marca){ <span class="hljs-keyword">this</span>.marca = marca; }
+
+    <span class="hljs-function">String <span class="hljs-title">getMarcaCoche</span><span class="hljs-params">()</span></span>{ <span class="hljs-keyword">return</span> marca; }
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">guardarCocheDB</span><span class="hljs-params">(Coche coche)</span></span>{ ... }
+}
+</code></pre>
+
+<p>¿Por qué este código viola el principio de responsabilidad única? Para un minuto y piensa un poco ;)</p>
+
+<p>Como podemos observar, la clase Coche permite tanto el acceso a las propiedades de la clase como a realizar operaciones sobre la BBDD, por lo que la clase ya tiene más de una responsabilidad.</p>
+
+<p>Supongamos que debemos realizar cambios en los métodos que realizan las operaciones a la BBDD. En este caso, además de estos cambios, probablemente tendríamos que tocar los nombres o tipos de las propiedades, métodos, etc, cosa que no parece muy eficiente porque solo estamos modificando cosas que tienen que ver con la BBDD, ¿verdad?</p>
+
+<p>Para evitar esto, debemos separar las responsabilidades de la clase, por lo que podemos crear otra clase que se encargue de las operaciones a la BBDD:</p>
+
+<pre><code class="hljs cs"><span class="hljs-keyword">class</span> <span class="hljs-title">Coche</span> {  
+    String marca;
+
+    Coche(String marca){ <span class="hljs-keyword">this</span>.marca = marca; }
+
+    <span class="hljs-function">String <span class="hljs-title">getMarcaCoche</span><span class="hljs-params">()</span></span>{ <span class="hljs-keyword">return</span> marca; }
+}
+
+<span class="hljs-keyword">class</span> <span class="hljs-title">CocheDB</span>{  
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">guardarCocheDB</span><span class="hljs-params">(Coche coche)</span></span>{ ... }
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">eliminarCocheDB</span><span class="hljs-params">(Coche coche)</span></span>{ ... }
+}
+</code></pre>
+
+<p>Nuestro programa será mucho más cohesivo y estará más encapsulado aplicando este principio.</p>
+
+<p><br>  </p>
+
+<h4 id="oprincipioabiertocerrado">O: Principio abierto/cerrado</h4>
+
+<p>Establece que las entidades software (clases, módulos y funciones) deberían estar abiertos para su extensión, pero cerrados para su modificación.</p>
+
+<p>Si seguimos con la clase Coche:</p>
+
+<pre><code class="language-` hljs javascript"><span class="hljs-keyword">class</span> Coche {  
+    <span class="hljs-built_in">String</span> marca;
+
+    Coche(<span class="hljs-built_in">String</span> marca){ <span class="hljs-keyword">this</span>.marca = marca; }
+
+    <span class="hljs-built_in">String</span> getMarcaCoche(){ <span class="hljs-keyword">return</span> marca; }
+}
+</code></pre>
+
+<p>Si quisiéramos iterar a través de una lista de coches e imprimir sus marcas por pantalla:</p>
+
+<pre><code class="hljs cs"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{  
+    Coche[] arrayCoches = {
+            <span class="hljs-keyword">new</span> Coche(<span class="hljs-string">"Renault"</span>),
+            <span class="hljs-keyword">new</span> Coche(<span class="hljs-string">"Audi"</span>)
+    };
+    imprimirPrecioMedioCoche(arrayCoches);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">imprimirPrecioMedioCoche</span><span class="hljs-params">(Coche[] arrayCoches)</span></span>{  
+    <span class="hljs-keyword">for</span> (Coche coche : arrayCoches) {
+        <span class="hljs-keyword">if</span>(coche.marca.equals(<span class="hljs-string">"Renault"</span>)) System.<span class="hljs-keyword">out</span>.println(<span class="hljs-number">18000</span>);
+        <span class="hljs-keyword">if</span>(coche.marca.equals(<span class="hljs-string">"Audi"</span>)) System.<span class="hljs-keyword">out</span>.println(<span class="hljs-number">25000</span>);
+    }
+}
+</code></pre>
+
+<p>Esto no cumpliría el principio abierto/cerrado, ya que si decidimos añadir un nuevo coche de otra marca:</p>
+
+<pre><code class="hljs coffeescript">Coche[] arrayCoches = {  
+    <span class="hljs-keyword">new</span> Coche(<span class="hljs-string">"Renault"</span>),
+    <span class="hljs-keyword">new</span> Coche(<span class="hljs-string">"Audi"</span>),
+    <span class="hljs-keyword">new</span> Coche(<span class="hljs-string">"Mercedes"</span>)
+};
+</code></pre>
+
+<p>También tendríamos que modificar el método que hemos creado anteriormente:  </p>
+
+<pre><code class="hljs cs"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">imprimirPrecioMedioCoche</span><span class="hljs-params">(Coche[] arrayCoches)</span></span>{  
+    <span class="hljs-keyword">for</span> (Coche coche : arrayCoches) {
+        <span class="hljs-keyword">if</span>(coche.marca.equals(<span class="hljs-string">"Renault"</span>)) System.<span class="hljs-keyword">out</span>.println(<span class="hljs-number">18000</span>);
+        <span class="hljs-keyword">if</span>(coche.marca.equals(<span class="hljs-string">"Audi"</span>)) System.<span class="hljs-keyword">out</span>.println(<span class="hljs-number">25000</span>);
+        <span class="hljs-keyword">if</span>(coche.marca.equals(<span class="hljs-string">"Mercedes"</span>)) System.<span class="hljs-keyword">out</span>.println(<span class="hljs-number">27000</span>);
+    }
+}
+</code></pre>
+
+<p>Como podemos ver, para cada nuevo coche habría que añadir nueva lógica al método precioMedioCoche(). Esto es un ejemplo sencillo, pero imagina que tu aplicación crece y crece… ¿cuántas modificaciones tendríamos que hacer? Mejor evitarnos esta pérdida de tiempo y dolor de cabeza, ¿verdad?</p>
+
+<p>Para que cumpla con este principio podríamos hacer lo siguiente:</p>
+
+<pre><code class="hljs java"><span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Coche</span> </span>{  
+    <span class="hljs-comment">// ...</span>
+    <span class="hljs-function"><span class="hljs-keyword">abstract</span> <span class="hljs-keyword">int</span> <span class="hljs-title">precioMedioCoche</span><span class="hljs-params">()</span></span>;
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Renault</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Coche</span> </span>{  
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">precioMedioCoche</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> <span class="hljs-number">18000</span>; }
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Audi</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Coche</span> </span>{  
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">precioMedioCoche</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> <span class="hljs-number">25000</span>; }
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Mercedes</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Coche</span> </span>{  
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">precioMedioCoche</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> <span class="hljs-number">27000</span>; }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+
+    Coche[] arrayCoches = {
+            <span class="hljs-keyword">new</span> Renault(),
+            <span class="hljs-keyword">new</span> Audi(),
+            <span class="hljs-keyword">new</span> Mercedes()
+    };
+
+    imprimirPrecioMedioCoche(arrayCoches);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">imprimirPrecioMedioCoche</span><span class="hljs-params">(Coche[] arrayCoches)</span></span>{  
+    <span class="hljs-keyword">for</span> (Coche coche : arrayCoches) {
+        System.out.println(coche.precioMedioCoche());
+    }
+}
+</code></pre>
+
+<p>Cada coche extiende la clase abstracta Coche e implementa el método abstracto precioMedioCoche().</p>
+
+<p>Así, cada coche tiene su propia implementación del método precioMedioCoche(), por lo que el método imprimirPrecioMedioCoche() itera el array de coches y solo llama al método precioMedioCoche().</p>
+
+<p>Ahora, si añadimos un nuevo coche, precioMedioCoche() no tendrá que ser modificado. Solo tendremos que añadir el nuevo coche al array, cumpliendo así el principio abierto/cerrado.</p>
+
+<p><br>  </p>
+
+<h4 id="lprincipiodesubstitucindeliskov">L: Principio de substitución de Liskov</h4>
+
+<p>Declara que una subclase debe ser sustituible por su superclase, y si al hacer esto, el programa falla, estaremos violando este principio.</p>
+
+<p>Cumpliendo con este principio se confirmará que nuestro programa tiene una jerarquía de clases fácil de entender y un código reutilizable.</p>
+
+<p>Veamos un ejemplo:</p>
+
+<pre><code class="language-` hljs cs"><span class="hljs-comment">// ...</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">imprimirNumAsientos</span><span class="hljs-params">(Coche[] arrayCoches)</span></span>{  
+    <span class="hljs-keyword">for</span> (Coche coche : arrayCoches) {
+        <span class="hljs-keyword">if</span>(coche instanceof Renault)
+            System.<span class="hljs-keyword">out</span>.println(numAsientosRenault(coche));
+        <span class="hljs-keyword">if</span>(coche instanceof Audi)
+            System.<span class="hljs-keyword">out</span>.println(numAsientosAudi(coche));
+        <span class="hljs-keyword">if</span>(coche instanceof Mercedes)
+            System.<span class="hljs-keyword">out</span>.println(numAsientosMercedes(coche));
+    }
+}
+imprimirNumAsientos(arrayCoches);  
+</code></pre>
+
+<p>Esto viola tanto el principio de substitución de Liskov como el de abierto/cerrado. El programa debe conocer cada tipo de Coche y llamar a su método numAsientos() asociado.</p>
+
+<p>Así, si añadimos un nuevo coche, el método debe modificarse para aceptarlo.</p>
+
+<pre><code class="language-` hljs cs"><span class="hljs-comment">// ...</span>
+Coche[] arrayCoches = {  
+        <span class="hljs-keyword">new</span> Renault(),
+        <span class="hljs-keyword">new</span> Audi(),
+        <span class="hljs-keyword">new</span> Mercedes(),
+        <span class="hljs-keyword">new</span> Ford()
+};
+
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">imprimirNumAsientos</span><span class="hljs-params">(Coche[] arrayCoches)</span></span>{  
+    <span class="hljs-keyword">for</span> (Coche coche : arrayCoches) {
+        <span class="hljs-keyword">if</span>(coche instanceof Renault)
+            System.<span class="hljs-keyword">out</span>.println(numAsientosRenault(coche));
+        <span class="hljs-keyword">if</span>(coche instanceof Audi)
+            System.<span class="hljs-keyword">out</span>.println(numAsientosAudi(coche));
+        <span class="hljs-keyword">if</span>(coche instanceof Mercedes)
+            System.<span class="hljs-keyword">out</span>.println(numAsientosMercedes(coche));
+        <span class="hljs-keyword">if</span>(coche instanceof Ford)
+            System.<span class="hljs-keyword">out</span>.println(numAsientosFord(coche));
+    }
+}
+imprimirNumAsientos(arrayCoches);  
+</code></pre>
+
+<p>Para que este método cumpla con el principio, seguiremos estos principios:</p>
+
+<ul>
+<li>Si la superclase (Coche) tiene un método que acepta un parámetro del tipo de la superclase (Coche), entonces su subclase (Renault) debería aceptar como argumento un tipo de la superclase (Coche) o un tipo de la subclase (Renault).</li>
+<li>Si la superclase devuelve un tipo de ella misma (Coche), entonces su subclase (Renault) debería devolver un tipo de la superclase (Coche) o un tipo de la subclase (Renault).</li>
+</ul>
+
+<p>Si volvemos a implementar el método anterior:</p>
+
+<pre><code class="language-` hljs cs"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">imprimirNumAsientos</span><span class="hljs-params">(Coche[] arrayCoches)</span></span>{  
+        <span class="hljs-keyword">for</span> (Coche coche : arrayCoches) {
+            System.<span class="hljs-keyword">out</span>.println(coche.numAsientos());
+        }
+    }
+
+imprimirNumAsientos(arrayCoches);  
+</code></pre>
+
+<p>Ahora al método no le importa el tipo de la clase, simplemente llama al método numAsientos() de la superclase. Solo sabe que el parámetro es de tipo coche, ya sea Coche o alguna de las subclases.</p>
+
+<p>Para esto, ahora la clase Coche debe definir el nuevo método:</p>
+
+<pre><code class="language-` hljs cs"><span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Coche</span> {
+
+    <span class="hljs-comment">// ...</span>
+    <span class="hljs-function"><span class="hljs-keyword">abstract</span> <span class="hljs-keyword">int</span> <span class="hljs-title">numAsientos</span><span class="hljs-params">()</span></span>;
+}
+</code></pre>
+
+<p>Y las subclases deben implementar dicho método:</p>
+
+<pre><code class="language-` hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Renault</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Coche</span> </span>{
+
+    <span class="hljs-comment">// ...</span>
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">numAsientos</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-number">5</span>;
+    }
+}
+<span class="hljs-comment">// ...</span>
+</code></pre>
+
+<p>Como podemos ver, ahora el método imprimirNumAsientos() no necesita saber con qué tipo de coche va a realizar su lógica, simplemente llama al método numAsientos() del tipo Coche, ya que por contrato, una subclase de Coche debe implementar dicho método.</p>
+
+<p><br>  </p>
+
+<h4 id="iprincipiodesegregacindeinterfaz">I: Principio de segregación de interfaz</h4>
+
+<p>Este principio establece que los clientes no deberían verse forzados a depender de interfaces que no usan.</p>
+
+<p>Dicho de otra manera, cuando un cliente depende de una clase que implementa una interfaz cuya funcionalidad este cliente no usa, pero que otros clientes sí usan, este cliente estará siendo afectado por los cambios que fuercen otros clientes en dicha interfaz.</p>
+
+<p>Imaginemos que queremos definir las clases necesarias para albergar algunos tipos de aves. Por ejemplo, tendríamos loros, tucanes y halcones:</p>
+
+<pre><code class="language-` hljs java"><span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">IAve</span> </span>{  
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">volar</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">comer</span><span class="hljs-params">()</span></span>;
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Loro</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">IAve</span></span>{
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">volar</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-comment">//...</span>
+    }
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">comer</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-comment">//..</span>
+    }
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Tucan</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">IAve</span></span>{  
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">volar</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-comment">//...</span>
+    }
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">comer</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-comment">//..</span>
+    }
+}
+</code></pre>
+
+<p>Hasta aquí todo bien. Pero ahora imaginemos que queremos añadir a los pingüinos. Estos son aves, pero además tienen la habilidad de nadar. Podríamos hacer esto:</p>
+
+<pre><code class="language-` hljs java"><span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">IAve</span> </span>{  
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">volar</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">comer</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">nadar</span><span class="hljs-params">()</span></span>;
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Loro</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">IAve</span></span>{
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">volar</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-comment">//...</span>
+    }
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">comer</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-comment">//...</span>
+    }
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">nadar</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-comment">//...</span>
+    }
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Pinguino</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">IAve</span></span>{
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">volar</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-comment">//...</span>
+    }
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">comer</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-comment">//...</span>
+    }
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">nadar</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-comment">//...</span>
+    }
+}
+</code></pre>
+
+<p>El problema es que el loro no nada, y el pingüino no vuela, por lo que tendríamos que añadir una excepción o aviso si se intenta llamar a estos métodos. Además, si quisiéramos añadir otro método a la interfaz IAve, tendríamos que recorrer cada una de las clases que la implementa e ir añadiendo la implementación de dicho método en todas ellas. Esto viola el principio de segregación de interfaz, ya que estas clases (los clientes) no tienen por qué depender de métodos que no usan.</p>
+
+<p>Lo más correcto sería segregar más las interfaces, tanto como sea necesario. En este caso podríamos hacer lo siguiente:</p>
+
+<pre><code class="language-` hljs java"><span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">IAve</span> </span>{  
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">comer</span><span class="hljs-params">()</span></span>;
+}
+<span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">IAveVoladora</span> </span>{  
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">volar</span><span class="hljs-params">()</span></span>;
+}
+
+<span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">IAveNadadora</span> </span>{  
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">nadar</span><span class="hljs-params">()</span></span>;
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Loro</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">IAve</span>, <span class="hljs-title">IAveVoladora</span></span>{
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">volar</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-comment">//...</span>
+    }
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">comer</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-comment">//...</span>
+    }
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Pinguino</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">IAve</span>, <span class="hljs-title">IAveNadadora</span></span>{
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">nadar</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-comment">//...</span>
+    }
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">comer</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-comment">//...</span>
+    }
+}
+</code></pre>
+
+<p>Así, cada clase implementa las interfaces de la que realmente necesita implementar sus métodos. A la hora de añadir nuevas funcionalidades, esto nos ahorrará bastante tiempo, y además, cumplimos con el primer principio (Responsabilidad Única).</p>
+
+<p><br>  </p>
+
+<h4 id="dprincipiodeinversindedependencias">D: Principio de inversión de dependencias</h4>
+
+<p>Establece que las dependencias deben estar en las abstracciones, no en las concreciones. Es decir:</p>
+
+<ul>
+<li>Los módulos de alto nivel no deberían depender de módulos de bajo nivel. Ambos deberían depender de abstracciones.</li>
+<li>Las abstracciones no deberían depender de detalles. Los detalles deberían depender de abstracciones.</li>
+</ul>
+
+<p>En algún momento nuestro programa o aplicación llegará a estar formado por muchos módulos. Cuando esto pase, es cuando debemos usar inyección de dependencias, lo que nos permitirá controlar las funcionalidades desde un sitio concreto en vez de tenerlas esparcidas por todo el programa. Además, este aislamiento nos permitirá realizar testing mucho más fácilmente.</p>
+
+<p>Supongamos que tenemos una clase para realizar el acceso a datos, y lo hacemos a través de una BBDD:</p>
+
+<pre><code class="language-` hljs cs"><span class="hljs-keyword">class</span> <span class="hljs-title">DatabaseService</span>{  
+    <span class="hljs-comment">//...</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">getDatos</span><span class="hljs-params">()</span></span>{ <span class="hljs-comment">//... }</span>
+}
+
+<span class="hljs-keyword">class</span> <span class="hljs-title">AccesoADatos</span> {
+
+    <span class="hljs-keyword">private</span> DatabaseService databaseService;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">AccesoADatos</span><span class="hljs-params">(DatabaseService databaseService)</span></span>{
+        <span class="hljs-keyword">this</span>.databaseService = databaseService;
+    }
+
+    <span class="hljs-function">Dato <span class="hljs-title">getDatos</span><span class="hljs-params">()</span></span>{
+        databaseService.getDatos();
+        <span class="hljs-comment">//...</span>
+    }
+}
+</code></pre>
+
+<p>Imaginemos que en el futuro queremos cambiar el servicio de BBDD por un servicio que conecta con una API. Para un minuto a pensar qué habría que hacer... ¿Ves el problema? Tendríamos que ir modificando todas las instancias de la clase AccesoADatos, una por una.</p>
+
+<p>Esto es debido a que nuestro módulo de alto nivel (AccesoADatos) depende de un módulo de más bajo nivel (DatabaseService), violando así el principio de inversión de dependencias. El módulo de alto nivel debería depender de abstracciones.</p>
+
+<p>Para arreglar esto, podemos hacer que el módulo AccesoADatos dependa de una abstracción más genérica:</p>
+
+<pre><code class="language-` hljs cs"><span class="hljs-keyword">interface</span> <span class="hljs-title">Conexion</span> {  
+    <span class="hljs-function">Dato <span class="hljs-title">getDatos</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setDatos</span><span class="hljs-params">()</span></span>;
+}
+
+<span class="hljs-keyword">class</span> <span class="hljs-title">AccesoADatos</span> {
+
+    <span class="hljs-keyword">private</span> Conexion conexion;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">AccesoADatos</span><span class="hljs-params">(Conexion conexion)</span></span>{
+        <span class="hljs-keyword">this</span>.conexion = conexion;
+    }
+
+    <span class="hljs-function">Dato <span class="hljs-title">getDatos</span><span class="hljs-params">()</span></span>{
+        conexion.getDatos();
+    }
+}
+</code></pre>
+
+<p>Así, sin importar el tipo de conexión que se le pase al módulo AccesoADatos, ni este ni sus instancias tendrán que cambiar, por lo que nos ahorraremos mucho trabajo.</p>
+
+<p>Ahora, cada servicio que queramos pasar a AccesoADatos deberá implementar la interfaz Conexion:</p>
+
+<pre><code class="language-` hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DatabaseService</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Conexion</span> </span>{
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Dato <span class="hljs-title">getDatos</span><span class="hljs-params">()</span> </span>{ <span class="hljs-comment">//... }</span>
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setDatos</span><span class="hljs-params">()</span> </span>{ <span class="hljs-comment">//... }</span>
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">APIService</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Conexion</span></span>{
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Dato <span class="hljs-title">getDatos</span><span class="hljs-params">()</span> </span>{ <span class="hljs-comment">//... }</span>
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setDatos</span><span class="hljs-params">()</span> </span>{ <span class="hljs-comment">//... }</span>
+}
+</code></pre>
+
+<p>Así, tanto el módulo de alto nivel como el de bajo nivel dependen de abstracciones, por lo que cumplimos el principio de inversión de dependencias. Además, esto nos forzará a cumplir el principio de Liskov, ya que los tipos derivados de Conexion (DatabaseService y APIService) son sustituibles por su abstracción (interfaz Conexion).</p>
+
+<p><br>  </p>
+
+<h3 id="conclusin">Conclusión</h3>
+
+<p>Aplicar estos cinco principios puede parecer algo tedioso, pero a la larga, mediante la práctica y echarles un vistazo de vez en cuando, se volverán parte de nuestra forma de programar.</p>
+
+<p>Nuestro programa será más sencillo de mantener, pero no solo para nosotros, si no más aún para los desarrolladores que vengan después, ya que verán un programa con una estructura bien definida y clara.</p>
+
+<p>¿Conocías ya los principios SOLID? ¿los estabas aplicando en tu día a día? ¿los aplicarás? Me gustaría saber tu opinión.</p>
+				</section>
+
+				<footer class="footer-post">
+
+					<section class="author-post">
+							<figure class="avatar">
+								<img src="./Principios SOLID con ejemplos_files/imagenPerfil.jpg" alt="Carlos Macías Martín">
+							</figure>
+
+						<div class="bio">
+							<span>Autor</span>
+							<h4 class="author-name">
+								<a href="https://enmilocalfunciona.io/author/carlos-macias-martin/">Carlos Macías Martín</a>
+							</h4>
+								<p>Desarrollador de aplicaciones móviles, amante de la tecnología, de compartir conocimientos y ayudar a los demás.</p>
+						</div>
+					</section>
+
+					<section class="share">
+						<h4>Comparte</h4>
+						<a href="https://twitter.com/share?text=Principios%20SOLID&amp;url=https://enmilocalfunciona.io/principios-solid/" class="fa fa-twitter" onclick="window.open(this.href, &#39;twitter-share&#39;, &#39;width=550,height=235&#39;);return false;">
+							<span class="hidden">Twitter</span>
+						</a>
+
+						<a href="https://www.facebook.com/sharer/sharer.php?u=https://enmilocalfunciona.io/principios-solid/" class="fa fa-facebook" onclick="window.open(this.href, &#39;facebook-share&#39;,&#39;width=580,height=296&#39;);return false;">
+							<span class="hidden">Facebook</span>
+						</a>
+
+						<a href="https://plus.google.com/share?url=https://enmilocalfunciona.io/principios-solid/" class="fa fa-google-plus" onclick="window.open(this.href, &#39;google-plus-share&#39;, &#39;width=490,height=530&#39;);return false;">
+							<span class="hidden">Google+</span>
+						</a>
+
+                                                <script src="./Principios SOLID con ejemplos_files/in.js.descarga" type="text/javascript">lang: es_ES</script>
+						<span class="IN-widget" data-lnkd-debug="&lt;script type=&quot;IN/Share+init&quot; data-url=&quot;https://enmilocalfunciona.io/principios-solid/&quot;&gt;&lt;/script&gt;" style="display: inline-block; line-height: 1; vertical-align: bottom; padding: 0px; margin: 0px; text-indent: 0px; text-align: center;"><span style="padding: 0px !important; margin: 0px !important; text-indent: 0px !important; display: inline-block !important; vertical-align: bottom !important; font-size: 1px !important;"><button class="IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu"><xdoor-icon aria-hidden="true"><svg viewBox="0 0 24 24" width="24px" height="24px" x="0" y="0" preserveAspectRatio="xMinYMin meet">
+      <g style="fill: currentColor">
+        <rect x="-0.003" style="fill:none;" width="24" height="24"></rect>
+        <path style="" d="M20,2h-16c-1.1,0-2,0.9-2,2v16c0,1.1,0.9,2,2,2h16c1.1,0,2-0.9,2-2V4C22,2.9,21.1,2,20,2zM8,19h-3v-9h3V19zM6.5,8.8C5.5,8.8,4.7,8,4.7,7s0.8-1.8,1.8-1.8S8.3,6,8.3,7S7.5,8.8,6.5,8.8zM19,19h-3v-4c0-1.4-0.6-2-1.5-2c-1.1,0-1.5,0.8-1.5,2.2V19h-3v-9h2.9v1.1c0.5-0.7,1.4-1.3,2.6-1.3c2.3,0,3.5,1.1,3.5,3.7V19z"></path>
+      </g>
+    </svg></xdoor-icon>Compartir</button></span></span>
+					</section>
+				</footer>
+
+				<section class="comments-post">
+					<!-- Disqus Comments -->
+<div id="disqus_thread"><iframe id="dsq-app1091" name="dsq-app1091" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" width="100%" src="./Principios SOLID con ejemplos_files/saved_resource.html" style="width: 1px !important; min-width: 100% !important; border: none !important; overflow: hidden !important; height: 2500px !important;" horizontalscrolling="no" verticalscrolling="no"></iframe></div>
+<script>
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//enmilocalfunciona.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+					</section>
+
+			</div>
+		</article>
+	</section>
+
+
+	<footer class="blog-footer">
+		<div class="inner">
+			<div style="float:left;width:50%;margin-top: 18px">
+				<a href="https://enmilocalfunciona.io/condiciones-uso">Condiciones de Uso</a>
+			</div>
+			<div style="float:right;width:50%">
+				<p>Powered by <a href="http://atsistemas.com/">atSistemas</a></p>
+			</div>
+		</div>
+	</footer>
+
+	
+
+	<script src="./Principios SOLID con ejemplos_files/jquery.min.js.descarga"></script>
+	<script src="./Principios SOLID con ejemplos_files/highlight.min.js.descarga"></script>
+
+	<script>
+
+		//Menu Toggle
+		$("#icon").click(function() {
+		    $(this).toggleClass("active");
+	        $("#menu").fadeToggle();
+        });
+
+		//Code Highlighter
+        $(document).ready(function() {
+          $('pre code').each(function(i, block) {
+            hljs.highlightBlock(block);
+          });
+        });
+
+        //Google Analytics
+
+	</script>
+<script id="dsq-count-scr" src="./Principios SOLID con ejemplos_files/count.js.descarga" async=""></script>
+
+
+<iframe style="display: none;" src="./Principios SOLID con ejemplos_files/saved_resource(1).html"></iframe></body></html>

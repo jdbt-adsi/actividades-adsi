@@ -1,0 +1,25 @@
+(function(w, d, s) {
+  try {
+    d = w.top.document || d; w = w.top.document ? w.top : w;
+  } catch (e) {}
+  var ttag = function() {
+    var _tt_slots = window.top.document.querySelectorAll(".floatLeft--sm .historia > p");
+if (window.top.document.querySelectorAll(".teads-inread").length >= 1){
+ _tt_slots = tooManyInReads;
+}
+    w.teads.page(3036).placement(37715, {slider: {allow_corner_position: false, allow_top_position: false}, "css":"margin: 0px 0px 12px; padding: 0px 0px 12px;","format":"inread","slot":{"minimum":2,"auto":true}}).passback(function passback() {var js = [],
+ s = window.top.document.getElementsByTagName("script")[0];
+js.push(window.top.document.createElement("script"));
+js[0].async = true;
+js[0].setAttribute("src","https://mona.admanmedia.com/go?id=e9021a09");
+js[0].setAttribute("id","hybs-e9021a09");
+s.parentNode.insertBefore(js[0],s);
+}).serve();
+  };
+  if (w.teads && w.teads.page) { ttag(); }
+  else if (!w.teadsscript) {
+    var protocol = 'https:';
+    s.src = protocol + '//a.teads.tv/media/format/v3/teads-format.min.js';
+    s.async = true; s.onload = ttag; w.teadsscript = d.getElementsByTagName('head')[0].appendChild(s);
+  }
+})(window, document, document.createElement('script'));
